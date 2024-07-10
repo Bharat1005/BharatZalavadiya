@@ -1,3 +1,9 @@
+@media (max-width : 424px){
+    .navbar-link{
+        font-size : 16px;
+    }
+}
+
 @media (min-width: 450px) {
 
     /**

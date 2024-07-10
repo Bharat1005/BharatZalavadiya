@@ -118,24 +118,45 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 
 // contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
+document.addEventListener('DOMContentLoaded', (event) => {
+            const name = document.getElementById("name");
+            const email = document.getElementById("email");
+            const subject = document.getElementById("subject");
+            const message = document.getElementById("message");
+            const form = document.querySelector("[data-form]");
+            const formInputs = document.querySelectorAll("[data-form-input]");
+            const formBtn = document.querySelector("[data-form-btn]");
 
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
+            function sendEmail() {
+                const bodyMessage = `Name: ${name.value} <br>Email: ${email.value} <br>Subject: ${subject.value} <br>Message: ${message.value}`;
 
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
+                Email.send({
+                    Host: "smtp.elasticemail.com",
+                    Username: "zalavadiyabharat677@gmail.com",
+                    Password: "1D1D37C4CE772EEA1BB755E132DF4CCB54AA",
+                    To: 'zalavadiyabharat677@gmail.com',
+                    From: email.value,
+                    Subject: subject.value,
+                    Body: bodyMessage
+                }).then(
+                    message => alert('Mail sent successfully')
+                ).catch(
+                    error => alert('Failed to send mail: ' + error)
+                );
+            }
 
-  });
-}
-
+            // Add event to all form input fields
+            formInputs.forEach(input => {
+                input.addEventListener("input", () => {
+                    // Check form validation
+                    if (form.checkValidity()) {
+                        formBtn.removeAttribute("disabled");
+                    } else {
+                        formBtn.setAttribute("disabled", "");
+                    }
+                });
+            });
+        });
 
 
 // page navigation variables

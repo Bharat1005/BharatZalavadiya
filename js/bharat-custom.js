@@ -180,3 +180,22 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+  // Block Ctrl+Shift+I (Inspect), F12 (DevTools), and Ctrl+Shift+J (Console)
+  if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J') || e.key === 'F12') {
+      return false;
+  }
+  // Block Ctrl+U (View Source)
+  if (e.ctrlKey && e.key === 'U') {
+      return false;
+  }
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.key === "F12" || (e.ctrlKey && e.shiftKey && e.key === "C") ||  (e.ctrlKey && e.shiftKey && e.key === "I")  ||   (e.ctrlKey && e.shiftKey && e.key === "J")  || (e.ctrlKey  && e.key === "u") ) {
+      e.preventDefault();
+  }
+});

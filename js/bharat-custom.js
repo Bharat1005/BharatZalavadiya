@@ -199,3 +199,26 @@ document.addEventListener("keydown", function(e) {
       e.preventDefault();
   }
 });
+
+function sendToWhatsApp() {
+  // Get form data
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var message = document.getElementById("message").value;
+
+  // WhatsApp API URL
+  var whatsappUrl = "https://wa.me/";  // Base WhatsApp URL
+  var phoneNumber = "917874637630";    // Replace with your phone number (international format, no +)
+
+  // Create the message body
+  var textMessage = "Hello, my name is " + name + ".\nEmail: " + email + "\nMessage: " + message;
+
+  // Encode the message
+  var encodedMessage = encodeURIComponent(textMessage);
+
+  // Open WhatsApp with pre-filled message
+  var whatsappLink = whatsappUrl + phoneNumber + "?text=" + encodedMessage;
+
+  // Open the link in a new tab
+  window.open(whatsappLink, '_blank');
+}

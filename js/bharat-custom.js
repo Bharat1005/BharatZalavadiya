@@ -222,3 +222,23 @@ function sendToWhatsApp() {
   // Open the link in a new tab
   window.open(whatsappLink, '_blank');
 }
+
+
+// 
+document.addEventListener("DOMContentLoaded", () => {
+  const projectLinks = document.querySelectorAll(".navbar-item button");
+
+  projectLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const href = link.getAttribute("href").replace(".html", ""); // Remove .html from href
+          history.pushState(null, "", href); // Update the URL without reloading the page
+
+          // Optionally, load content dynamically (e.g., via AJAX)
+          console.log(`Navigated to: ${href}`);
+      });
+  });
+});
+
+
